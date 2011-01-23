@@ -1,5 +1,7 @@
 Search::Application.routes.draw do
-  resources :hosts
+  resources :hosts do
+    get :autocomplete_host_name, :on => :collection
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

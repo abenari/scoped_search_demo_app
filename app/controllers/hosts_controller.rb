@@ -1,4 +1,6 @@
 class HostsController < ApplicationController
+  autocomplete :host, :name
+
   def index
     @hosts = Host.search_for(params[:q])
   end

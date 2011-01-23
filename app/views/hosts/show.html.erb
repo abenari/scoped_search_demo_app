@@ -1,0 +1,16 @@
+<% title "Host" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @host.name %>
+</p>
+<p>
+  <strong>Memory:</strong>
+  <%= @host.memory %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_host_path(@host) %> |
+  <%= link_to "Destroy", @host, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", hosts_path %>
+</p>

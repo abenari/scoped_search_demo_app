@@ -1,6 +1,6 @@
 class HostsController < ApplicationController
   def index
-    @hosts = Host.all
+    @hosts = Host.search_for(params[:q])
   end
 
   def show

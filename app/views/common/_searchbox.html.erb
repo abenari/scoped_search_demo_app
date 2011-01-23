@@ -1,6 +1,7 @@
 <%= form_tag({:controller => controller_name, :action => 'index'}, :method => :get) do %>
 
-  Search <%= search_field_tag "q", params[:q], :autocomplete => "off" %>
+  <%=text_field_tag 'q', params[:q], :autocomplete => autocomplete_host_to_s_hosts_path %>
+
   <%= submit_tag 'Go' %>
   <hr>
 <% end -%>

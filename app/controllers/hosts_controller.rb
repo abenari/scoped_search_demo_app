@@ -1,5 +1,5 @@
 class HostsController < ApplicationController
-  autocomplete :host, :name
+  autocomplete :host, :to_s
 
   def index
     @hosts = Host.search_for(params[:q])
@@ -43,4 +43,9 @@ class HostsController < ApplicationController
     flash[:notice] = "Successfully destroyed host."
     redirect_to hosts_url
   end
+
+  def get_items(parameters)
+    Host.search_for(parameters[:term])
+  end
+
 end

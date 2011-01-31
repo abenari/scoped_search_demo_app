@@ -10,13 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110123141723) do
+ActiveRecord::Schema.define(:version => 20110131082802) do
 
   create_table "hosts", :force => true do |t|
     t.string   "name"
     t.integer  "memory"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "packages", :force => true do |t|
+    t.string   "name"
+    t.integer  "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "host_id"
   end
 
 end

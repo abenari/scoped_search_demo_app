@@ -1,4 +1,6 @@
 Search::Application.routes.draw do
+  resources :packages
+
   resources :hosts do
     get :autocomplete_host_to_s, :on => :collection
   end

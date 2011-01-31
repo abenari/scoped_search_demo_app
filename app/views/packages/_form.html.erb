@@ -1,0 +1,16 @@
+<%= form_for @package do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :version %><br />
+    <%= f.text_field :version %>
+  </p>
+    <p>
+    <%= f.label :host_id %><br />
+    <%= f.collection_select :host_id, Host.all, :id, :name, :allow_blank => true %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

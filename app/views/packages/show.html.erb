@@ -1,0 +1,16 @@
+<% title "Package" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @package.name %>
+</p>
+<p>
+  <strong>Version:</strong>
+  <%= @package.version %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_package_path(@package) %> |
+  <%= link_to "Destroy", @package, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", packages_path %>
+</p>

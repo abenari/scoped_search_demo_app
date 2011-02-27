@@ -46,7 +46,7 @@ $(document).ready(function(){
 				return val.split( e.delimiter );
 			}
 			function extractLast( term ) {
-				return split( term ).pop().replace(/^\s+/,"");
+				return split( term ).pop();
 			}
 		
 	    $(e).autocomplete({
@@ -58,13 +58,13 @@ $(document).ready(function(){
 				search: function() {
 					// custom minLength
 					var term = extractLast( this.value );
-					if ( term.length < 2 ) {
+					if ( term.length < 0 ) {
 						return false;
 					}
 				},
 				focus: function() {
-								// prevent value inserted on focus
-					return false;
+								// value inserted on focus
+					return true;
 				},
 				select: function( event, ui ) {
 					var terms = split( this.value );

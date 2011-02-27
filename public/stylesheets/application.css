@@ -12,6 +12,11 @@ a {
   color: #0000FF;
 }
 
+.ui-autocomplete-input{
+  width: 350px;
+   font-size: 14px;
+}
+
 .clear {
   clear: both;
   height: 0;

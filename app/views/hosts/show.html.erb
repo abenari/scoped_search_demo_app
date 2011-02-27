@@ -10,6 +10,26 @@
 </p>
 
 <p>
+<table bgcolor=cccccc>
+  <tr>
+    <th><strong>Packages:</strong></th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Version</th>
+  </tr>
+  <% for package in @host.packages %>
+      <tr>
+        <td></td>
+        <td><%= package.name %></td>
+        <td><%= package.version %></td>
+      </tr>
+  <% end %>
+</table>
+</p>
+
+<p>
   <%= link_to "Edit", edit_host_path(@host) %> |
   <%= link_to "Destroy", @host, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", hosts_path %>

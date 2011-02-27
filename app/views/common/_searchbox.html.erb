@@ -1,7 +1,8 @@
-<%= form_tag({:controller => controller_name, :action => 'index'}, :method => :get) do %>
+<%= form_tag({:controller => controller_name, :action => 'index'}, :method => :get)  do %>
 
-  <%=text_field_tag 'q', params[:q], :autocomplete => autocomplete_host_to_s_hosts_path %>
+  <%=text_field_tag 'q', params[:q], :autocomplete => autocomplete_host_to_s_hosts_path, :class => 'ui-autocomplete-input' %>
 
   <%= submit_tag 'Go' %>
   <hr>
 <% end -%>
+

@@ -3,6 +3,9 @@ class HostsController < ApplicationController
 
   def index
     @hosts = Host.search_for(params[:q])
+  rescue ScopedSearch::QueryNotSupported => e
+    flash[:error] = e.to_s
+    @hosts = Host.all
   end
 
   def show
@@ -45,7 +48,13 @@ class HostsController < ApplicationController
   end
 
   def get_items(parameters)
-    Host.search_for(parameters[:term])
+    #get the syntax auto-complete suggestions
+    begin
+      Host.complete_for(parameters[:term])
+    rescue ScopedSearch::QueryNotSupported => e
+      return e.to_s
+    end
+
   end
 
 end

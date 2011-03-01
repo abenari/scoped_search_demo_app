@@ -9,7 +9,7 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 
 gem "nifty-generators", :group => :development
 #gem 'scoped_search'
-gem 'rails3-jquery-autocomplete'
+#gem 'rails3-jquery-autocomplete'
 
 
 # Use unicorn as the web server

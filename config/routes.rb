@@ -1,8 +1,10 @@
 Search::Application.routes.draw do
-  resources :packages
+  resources :packages do
+    get :auto_complete_search, :on => :collection
+  end
 
   resources :hosts do
-    get :autocomplete_host_to_s, :on => :collection
+    get :auto_complete_search, :on => :collection
   end
 
   # The priority is based upon order of creation:

@@ -1,11 +1,23 @@
 class HostsController < ApplicationController
-  autocomplete :host, :to_s
-
+  #get list of hosts filtered by the search term
   def index
-    @hosts = Host.search_for(params[:q])
+    @hosts = Host.search_for(params[:search], :order => params[:order])
+    flash.clear
   rescue ScopedSearch::QueryNotSupported => e
     flash[:error] = e.to_s
     @hosts = Host.all
+  end
+  
+  #get the syntax auto-complete suggestions
+   def auto_complete_search
+    begin
+      @items = Host.complete_for(params[:search])
+    rescue ScopedSearch::QueryNotSupported => e
+      @items = e.to_s
+    end
+    render :json => @items
+#    @highlight = ['packages']
+#    render :inline => "<%= auto_complete_result @items, @highlight  %>"
   end
 
   def show
@@ -45,16 +57,6 @@ class HostsController < ApplicationController
     @host.destroy
     flash[:notice] = "Successfully destroyed host."
     redirect_to hosts_url
-  end
-
-  def get_items(parameters)
-    #get the syntax auto-complete suggestions
-    begin
-      Host.complete_for(parameters[:term])
-    rescue ScopedSearch::QueryNotSupported => e
-      return e.to_s
-    end
-
   end
 
 end

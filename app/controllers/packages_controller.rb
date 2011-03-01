@@ -1,6 +1,22 @@
 class PackagesController < ApplicationController
   def index
-    @packages = Package.All
+    @packages = Package.search_for(params[:search], :order => params[:order])
+    flash.clear
+  rescue ScopedSearch::QueryNotSupported => e
+    flash[:error] = e.to_s
+    @packages = Package.all
+  end
+
+  #get the syntax auto-complete suggestions
+   def auto_complete_search
+    begin
+      @items = Package.complete_for(params[:search])
+    rescue ScopedSearch::QueryNotSupported => e
+      @items = e.to_s
+    end
+    render :json => @items
+#    @highlight = ['packages']
+#    render :inline => "<%= auto_complete_result @items, @highlight  %>"
   end
 
   def show

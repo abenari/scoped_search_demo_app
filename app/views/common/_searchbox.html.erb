@@ -1,8 +1,9 @@
-<%= form_tag({:controller => controller_name, :action => 'index'}, :method => :get)  do %>
-
-  <%=text_field_tag 'q', params[:q], :autocomplete => autocomplete_host_to_s_hosts_path, :class => 'ui-autocomplete-input' %>
-
-  <%= submit_tag 'Go' %>
-  <hr>
+<% form_tag eval("#{controller_name}_path"), :method => "get" do %>
+  <%#= auto_complete_field_tag(:search, params[:search], {},{ :frequency => 0.1, :min_chars => -1 }) %>
+  <%= auto_complete_field_tag_jquery(:search, params[:search], {},{ :frequency => 0.1, :min_chars => -1 }) %>
+  <%= submit_tag 'Search' %>
+    <hr>
 <% end -%>
+
+
 

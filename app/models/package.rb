@@ -7,6 +7,6 @@ class Package < ActiveRecord::Base
   
   scoped_search :on => :name
   scoped_search :on => :version , :only_explicit => true
-  scoped_search :in => :host, :on => :name
-  scoped_search :in => :host, :on => :memory, :only_explicit => true
+  scoped_search :in => :host, :on => :name, :rename => 'host.name'.to_sym, :complete_value => true
+  scoped_search :in => :host, :on => :memory, :rename => 'host.memory'.to_sym, :complete_value => true, :only_explicit => true
 end

@@ -1,10 +1,11 @@
 <% title "Hosts" %>
 
 <table>
+  <tr></tr>
   <tr>
-    <th>Name</th>
-    <th>Memory</th>
-    <th>Created at</th>
+    <th><%= sort :name %></th>
+    <th><%= sort :memory %></th>
+    <th><%= sort :created_at, :as => 'Created' %></th>
   </tr>
   <% for host in @hosts %>
     <tr>

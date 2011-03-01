@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Version</th>
-    <th>Host</th>
+    <th><%= sort :name %></th>
+    <th><%= sort :version %></th>
+    <th><%= sort :host_id, :as => 'Host' %></th>
   </tr>
   <% for package in @packages %>
     <tr>

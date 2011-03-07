@@ -5,6 +5,10 @@
     <%= f.text_field :name %>
   </p>
   <p>
+    <%= f.label :status %><br />
+    <%= f.select :status_name, Host::STATUS_NAMES.keys %>
+  </p>
+  <p>
     <%= f.label :memory %><br />
     <%= f.text_field :memory %>
   </p>

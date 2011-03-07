@@ -4,12 +4,14 @@
   <tr></tr>
   <tr>
     <th><%= sort :name %></th>
+    <th><%= sort :status %></th>
     <th><%= sort :memory %></th>
     <th><%= sort :created_at, :as => 'Created' %></th>
   </tr>
   <% for host in @hosts %>
     <tr>
       <td><%= host.name %></td>
+      <td><%= host.status_name %></td>
       <td><%= memory_column host.memory %></td>
       <td><%= time_ago_in_words host.created_at %></td>
       <td><%= link_to "Show", host %></td>

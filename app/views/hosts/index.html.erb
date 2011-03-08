@@ -6,6 +6,7 @@
     <th><%= sort :name %></th>
     <th><%= sort :status %></th>
     <th><%= sort :memory %></th>
+    <th><%= :number_of_cores %></th>
     <th><%= sort :created_at, :as => 'Created' %></th>
   </tr>
   <% for host in @hosts %>
@@ -13,6 +14,7 @@
       <td><%= host.name %></td>
       <td><%= host.status_name %></td>
       <td><%= memory_column host.memory %></td>
+      <td><%= host.num_of_cores %></td>
       <td><%= time_ago_in_words host.created_at %></td>
       <td><%= link_to "Show", host %></td>
       <td><%= link_to "Edit", edit_host_path(host) %></td>

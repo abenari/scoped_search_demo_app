@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110307083401) do
+ActiveRecord::Schema.define(:version => 20110307124037) do
 
   create_table "hosts", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20110307083401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status",     :default => 0
+    t.integer  "bits",       :default => 0
   end
 
   create_table "packages", :force => true do |t|

@@ -6,7 +6,7 @@
     <th><%= sort :name %></th>
     <th><%= sort :status %></th>
     <th><%= sort :memory %></th>
-    <th><%= :number_of_cores %></th>
+    <th><%= sort :cores %></th>
     <th><%= sort :created_at, :as => 'Created' %></th>
   </tr>
   <% for host in @hosts %>

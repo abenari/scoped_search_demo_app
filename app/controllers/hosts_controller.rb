@@ -16,8 +16,7 @@ class HostsController < ApplicationController
       @items = e.to_s
     end
     render :json => @items
-#    @highlight = ['packages']
-#    render :inline => "<%= auto_complete_result @items, @highlight  %>"
+    #render :inline => "<%= auto_complete_result_jquery @items  %>"
   end
 
   def show

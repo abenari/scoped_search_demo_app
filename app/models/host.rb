@@ -6,7 +6,7 @@ class Host < ActiveRecord::Base
   
   has_many  :packages
 
-  scoped_search :on => :name, :complete_value => true
+  scoped_search :on => :name, :complete_value => true, :default_order => :asc
   scoped_search :on => :created_at,:rename => :created, :complete_value => true
   scoped_search :on => :memory, :only_explicit => true, :complete_value => true
   scoped_search :on => :status, :complete_value => STATUS_NAMES

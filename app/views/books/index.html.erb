@@ -11,7 +11,7 @@
 <table>
   <tr>
     <th><%= sort :name %></th>
-    <th><%= sort :author %></th>
+    <th><%= sort :"author.last", :as => "Author" %></th>
   </tr>
   <% for book in @books %>
     <tr>

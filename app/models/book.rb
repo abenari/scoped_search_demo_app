@@ -4,6 +4,7 @@ class Book < ActiveRecord::Base
 
   scoped_search :on => :name, :complete_value => :true, :default_order => true
   scoped_search :on => :description, :complete_value => :false
-  scoped_search :in => :author, :on => :last_name, :complete_value => true, :rename => :author
+  scoped_search :in => :author, :on => :last_name, :complete_value => true, :rename => :"author.last"
+  scoped_search :in => :author, :on => :first_name, :complete_value => true, :rename => :"author.first"
 
 end

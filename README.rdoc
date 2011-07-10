@@ -1,0 +1,84 @@
+= Welcome to the Scoped Search Demo Application
+This software is all about demonstrating the capabilities and usage of the 'scoped_search' plugin http://github.com/wvanbergen/scoped_search.
+The socped_search is a Rails plugin that let a user easily search ActiveRecord models with a simple query language using a named scope. The scoped search can be used by the programmer as well as the end user. It includes a syntax auto completer to get the end users familiar with the query syntax.
+
+== The Application
+The demo application has two pages Books and Authors, an Author  has many Books and a Book  belongs to an Author . In the Books page there is a search bar at the top to allow the user to search for Books.
+A running demo can be found on http://scope-search-demo.heroku.com
+
+== Installation instruction
+
+    $ git clone git://github.com/abenari/scoped_search_demo_app.git
+    $ bundle install
+    $ rake db:migrate
+    $ rake db:seed
+
+== External resources
+Blogs:
+* abenari's blog: http://scopedsearch.wordpress.com
+* wvanbergen’s blog posts: http://techblog.floorplanner.com/tag/scoped_search
+
+== Requirements
+=== Gems
+Scoped search runs on both Rails 2 and 3.
+
+=== javascript and css files
+The GUI part of the plugin can use Prototype or JQuery java-script library.
+If you are using JQuery you'll need 'jquery.js' and 'jquery-ui.js' in the 'public/javascript' folder. You can find more info about JQuery here:
+*  http://jquery.com/
+*  http://jqueryui.com/demos/autocomplete/
+
+Style sheets files are in the folder to the *public/stylesheets* folder on your app.  The styles that begin with .auto_complete are the ones that set the auto-completer widget style.
+
+=== Include the java script and style sheet files on your layout
+On *app/views/layouts/application.html.erb* you should include the needed javascript files  for example you can use the following lines
+
+    <%= javascript_include_tag "jquery.js", "jquery-ui.js" %>
+    <%= stylesheet_link_tag 'jquery-ui.css' %>
+
+=== Models
+In the model you should define the searchable objects and how they will be used in the search language.
+In the Books model you can find the following lines:
+
+    scoped_search :on => :name, :complete_value => :true, :default_order => true
+    scoped_search :on => :description, :complete_value => :false
+    scoped_search :in => :author, :on => :last_name, :complete_value => true, :rename => :"author.last"
+    scoped_search :in => :author, :on => :first_name, :complete_value => true, :rename => :"author.first"
+
+The <tt>:on</tt> mark the column name in the database, <tt>:in</tt> specify relation, <tt>:only_explicit</tt> exclude a search term from the free text search.
+The <tt>:complete_value</tt> make the auto completer suggest values to the user, <tt>:rename</tt> will rename the search term.
+Renaming some items to have the same beginning and have a dot in the name as demonstrated by 'author.first' and 'author.last'
+will make the auto completer suggest just 'author' for both to make the suggestion list shorter, ones the user type 'author.' it
+will complete the rest of the options (e.g. 'first' and 'last' in this example)
+
+=== Controllers
+The following two methods are used for showing the filtered list of books and auto-complete the search syntax.
+
+    index
+      @books = Book.search_for(params[:search], :order => params[:order]).all(:include => :author)
+    rescue => e
+      flash[:error] = e.to_s
+      @books= Book.search_for ''
+    end
+
+    def auto_complete_search
+      begin
+        @items = Book.complete_for(params[:search])
+      rescue ScopedSearch::QueryNotSupported => e
+        @items = [{:error =>e.to_s}]
+      end
+      render :json => @items
+    end
+
+== Views
+    <div id="books_search">
+      <%= form_tag books_path, :method => :get do %>
+        <%= auto_complete_field_tag_jquery(:search, params[:search], {:placeholder => "Type Space For Search Options"}) %>
+        <button id='submit_search' style="font-size: 12px;">Search</button>
+      <% end -%>
+    </div>
+
+=== Routes
+The following lines needs to be added to the *config/routes.rb* file
+    resources :books do
+      get :auto_complete_search, :on => :collection

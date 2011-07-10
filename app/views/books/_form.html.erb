@@ -1,0 +1,28 @@
+<%= form_for @book do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :author_id %><br />
+    <%= f.collection_select :author_id, Author.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :published_at %><br />
+    <%= f.datetime_select :published_at %>
+  </p>
+  <p>
+    <%= f.label :in_stock %><br />
+    <%= f.check_box :in_stock %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

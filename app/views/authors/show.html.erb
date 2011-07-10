@@ -1,0 +1,16 @@
+<% title "Author" %>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @author.first_name %>
+</p>
+<p>
+  <strong>Last Name:</strong>
+  <%= @author.last_name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_author_path(@author) %> |
+  <%= link_to "Destroy", @author, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", authors_path %>
+</p>

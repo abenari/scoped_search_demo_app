@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem "jquery-rails"
 gem 'rails', '3.0.5'
 gem "nifty-generators", :group => :development
+gem "scoped_search"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

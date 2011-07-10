@@ -1,7 +1,11 @@
 Bookstore::Application.routes.draw do
   resources :authors
 
-  resources :books
+  resources :books do
+    collection do
+      get 'auto_complete_search'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

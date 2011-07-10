@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all(:include => :author)
+    @books = Book.search_for(params[:search], :order => params[:order]).all(:include => :author)
+  rescue => e
+    flash[:error] = e.to_s
+    @books= Book.search_for ''
   end
 
   def show
@@ -38,4 +41,14 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_url, :notice => "Successfully destroyed book."
   end
+
+  def auto_complete_search
+    begin
+      @items = Book.complete_for(params[:search])
+    rescue ScopedSearch::QueryNotSupported => e
+      @items = [{:error =>e.to_s}]
+    end
+    render :json => @items
+  end
+
 end

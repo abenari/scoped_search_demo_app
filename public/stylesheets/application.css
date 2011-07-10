@@ -82,3 +82,15 @@ a {
   float:right;
   list-style-type:none;
 }
+
+.auto_complete_input {
+  font-family: Verdana, Helvetica, Arial;
+  padding: 2px 20px 3px 10px;
+  margin: 0 1px 0 0;
+  font-size: 14px;
+  width: 70%;
+  border-radius: 20px;
+  border: solid 1px #507ea1;
+
+
+}

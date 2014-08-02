@@ -1,12 +1,12 @@
 = Welcome to the Scoped Search Demo Application
 This software is all about demonstrating the capabilities and usage of the 'scoped_search' plugin http://github.com/wvanbergen/scoped_search.
-The socped_search is a Rails plugin that let a user easily search ActiveRecord models with a simple query language using a named scope. The scoped search can be used by the programmer as well as the end user. It includes a syntax auto completer to get the end users familiar with the query syntax.
+The scoped_search is a Rails plugin that let a user easily search ActiveRecord models with a simple query language using a named scope. The scoped search can be used by the programmer as well as the end user. It includes a syntax auto completer to get the end users familiar with the query syntax.
 
 == The Application
-The demo application has two pages Books and Authors, an Author  has many Books and a Book  belongs to an Author . In the Books page there is a search bar at the top to allow the user to search for Books.
+The demo application has two pages Books and Authors, an Author  has many Books and a Book belongs to an Author. In the Books page there is a search bar at the top to allow the user to search for Books.
 A running demo can be found on http://scope-search-demo.heroku.com
 
-== Installation instruction
+== Installation instructions
 
     $ git clone git://github.com/abenari/scoped_search_demo_app.git
     $ bundle install
@@ -31,7 +31,7 @@ If you are using JQuery you'll need 'jquery.js' and 'jquery-ui.js' in the 'publi
 Style sheets files are in the folder to the *public/stylesheets* folder on your app.  The styles that begin with .auto_complete are the ones that set the auto-completer widget style.
 
 === Include the java script and style sheet files on your layout
-On *app/views/layouts/application.html.erb* you should include the needed javascript files  for example you can use the following lines
+On *app/views/layouts/application.html.erb* you should include the needed javascript files for example you can use the following lines
 
     <%= javascript_include_tag "jquery.js", "jquery-ui.js" %>
     <%= stylesheet_link_tag 'jquery-ui.css' %>
